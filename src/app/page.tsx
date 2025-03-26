@@ -148,6 +148,7 @@ export default function Dashboard() {
           </div>  
           <div className="w-full flex items-center justify-start flex-col gap-4 overflow-auto">
             <ProduitSimpleCard
+              id={1}
               image="/mac.jpg"
               nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
               categorie="Ordinateur"
@@ -155,20 +156,25 @@ export default function Dashboard() {
               stockFaible={false}            
             />          
             <ProduitSimpleCard
+              id={2}
               image="/ultra.jpg"
               nomProduit="Galaxy Book 4 ultra 16&quot; core i9 1TB/32GB"
               categorie="Ordinateur"
               quantite={14}
-              stockFaible={false}            
+              stockFaible={false} 
+              ajouter={true}
             />          
             <ProduitSimpleCard
+              id={3}
               image="/asus.jpg"
               nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
               categorie="Ordinateur"
               quantite={2}
-              stockFaible={true}            
+              stockFaible={true} 
+              ajouter={true}
             />  
             <ProduitSimpleCard
+              id={4}
               image="/asus.jpg"
               nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
               categorie="Ordinateur"

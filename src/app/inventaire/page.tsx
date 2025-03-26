@@ -1,6 +1,7 @@
 "use client";
 import Navbar from '@/components/navbar';
-import { Check, ChevronDown, List, RotateCw, Search } from 'lucide-react';
+import ProduitCard from '@/components/produitCard';
+import { ArrowRight, Check, ChevronDown, List, RotateCw, Search } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -12,6 +13,7 @@ const Page = () => {
     const [prixMin, setPrixMin] = useState<string>("")
     const [prixMax, setPrixMax] = useState<string>("")
     const [isList, setIsList] = useState<boolean>(true)
+    const [isActive, setIsActive] = useState<boolean>(false)
 
     const handleClick = (): void => {
         setIsList(!isList)
@@ -26,7 +28,7 @@ const Page = () => {
     }
 
     return (
-        <section className="px-6 pt-6 pb-2 w-full h-auto bg-noir flex items-start justify-start flex-col gap-8">            
+        <section className="relative px-6 pt-6 pb-2 w-full h-auto bg-noir flex items-start justify-start flex-col gap-8">            
             <Navbar />
             <div className='mt-2 w-full flex items-end justify-between gap-4'>  
                 <div className='flex items-end gap-6'>
@@ -55,12 +57,12 @@ const Page = () => {
                         }                        
                     </div>
                 </div>
-                <hr className='border border-gray-600 h-11' />     
+                <hr className='border border-gray-600 h-11' />
                 <button className='border border-transparent bg-vert px-2.5 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
                     Nouveau Produit
                 </button>                         
             </div>
-            <div className='border border-orange-300 p-2 w-full h-[75.25vh] flex items-center justify-between gap-4'>
+            <div className='w-full h-[75.25vh] flex items-center justify-between gap-4'>
                 <div className='relative bg-fonce-400 px-4 py-4 rounded-3xl w-1/4 h-full flex items-center justify-start flex-col gap-3'>
                     <div className='w-full flex flex-col gap-2'>
                         <span className='text-gray-500 text-lg font-semibold'>Statut Produit</span>
@@ -80,16 +82,16 @@ const Page = () => {
                         </div>
                     </div>
                     <div className='w-full flex flex-col gap-2'>
-                        <span className='text-gray-500 text-lg font-semibold'>Trier par</span>
+                        <span className='text-gray-500 text-lg font-semibold'>Trier Par</span>
                         <div className='relative bg-fonce-200 py-2 px-3 cursor-pointer rounded-xl w-full flex items-center justify-between group'>
                             <span className='text-gray-50 text-lg font-semibold'>{trier === "" ? "Aucune selection" : trier }</span>
                             <ChevronDown size={28} strokeWidth={2.5} className='stroke-gray-500 transition duration-200 ease-linear group-hover:stroke-gray-50 group-hover:rotate-180' />
-                            <div className="border border-fonce-600 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">
-                                <button onClick={() => setTrier('Alphabétique: A-Z')} className='bg-fonce-transparent border-b border-fonce-600 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
+                            <div className="border border-gray-500 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">
+                                <button onClick={() => setTrier('Alphabétique: A-Z')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Alphabétique: A-Z
                                     { trier === "Alphabétique: A-Z" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                                
-                                <button onClick={() => setTrier('Alphabétique: Z-A')} className='bg-fonce-transparent border-b border-fonce-600 cursor-pointer px-3 py-1.5 w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
+                                <button onClick={() => setTrier('Alphabétique: Z-A')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Alphabétique: Z-A
                                     { trier === "Alphabétique: Z-A" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                                
@@ -105,12 +107,12 @@ const Page = () => {
                         <div className='relative bg-fonce-200 py-2 px-3 cursor-pointer rounded-xl w-full flex items-center justify-between group'>
                             <span className='text-gray-50 text-lg font-semibold'>{niveauStock === "" ? "Aucune selection" : niveauStock }</span>
                             <ChevronDown size={28} strokeWidth={2.5} className='stroke-gray-500 transition duration-200 ease-linear group-hover:stroke-gray-50 group-hover:rotate-180' />
-                            <div className="border border-fonce-600 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">
-                                <button onClick={() => setNiveauStock('Elevé')} className='bg-fonce-transparent border-b border-fonce-600 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
+                            <div className="border border-gray-500 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">
+                                <button onClick={() => setNiveauStock('Elevé')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Elevé
                                     { niveauStock === "Elevé" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                                
-                                <button onClick={() => setNiveauStock('Faible')} className='bg-fonce-transparent border-b border-fonce-600 cursor-pointer px-3 py-1.5 w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
+                                <button onClick={() => setNiveauStock('Faible')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Faible
                                     { niveauStock === "Faible" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                                
@@ -143,9 +145,97 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border border-purple-300 p-2 rounded-3xl w-3/4 h-full flex items-center justify-start flex-col gap-4 overflow-auto'>
-
+                <div className='rounded-xl w-3/4 h-full flex items-center justify-start flex-col gap-4 overflow-auto'>
+                    <ProduitCard 
+                        id={1}
+                        image="/mac.jpg"
+                        nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
+                        categorie="Ordinateur"
+                        quantite={37}
+                        stockFaible={false}  
+                        prixAchat={1580000}
+                        prixVente={1630000}
+                    />                    
+                    <ProduitCard 
+                        id={2}
+                        image="/ultra.jpg"
+                        nomProduit="Galaxy Book 4 ultra 16&quot; core i9 1TB/32GB"
+                        categorie="Ordinateur"
+                        quantite={14}
+                        stockFaible={false}  
+                        prixAchat={1100000}
+                        prixVente={1800000}
+                    />                    
+                    <ProduitCard 
+                        id={3}
+                        image="/asus.jpg"
+                        nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
+                        categorie="Ordinateur"
+                        quantite={2}
+                        stockFaible={true} 
+                        prixAchat={780000}
+                        prixVente={830000}  
+                    />                                                          
+                    <ProduitCard 
+                        id={1}
+                        image="/mac.jpg"
+                        nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
+                        categorie="Ordinateur"
+                        quantite={37}
+                        stockFaible={false}  
+                        prixAchat={1580000}
+                        prixVente={1630000}
+                    />                    
+                    <ProduitCard 
+                        id={2}
+                        image="/ultra.jpg"
+                        nomProduit="Galaxy Book 4 ultra 16&quot; core i9 1TB/32GB"
+                        categorie="Ordinateur"
+                        quantite={14}
+                        stockFaible={false}  
+                        prixAchat={1100000}
+                        prixVente={1800000}
+                    />                    
+                    <ProduitCard 
+                        id={3}
+                        image="/asus.jpg"
+                        nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
+                        categorie="Ordinateur"
+                        quantite={2}
+                        stockFaible={true} 
+                        prixAchat={780000}
+                        prixVente={830000}  
+                    />                                                          
                 </div>
+            </div>
+            <div className='absolute top-0 left-0 p-4 bg-noir/70 w-full h-full flex items-start justify-end'>
+                <div className='border border-fonce-400 p-4 bg-fonce-600 rounded-2xl w-2/3 h-full flex items-center justify-start flex-col gap-4'>
+                    <div className='w-full flex items-center justify-between'>
+                        <div className='bg-fonce-400 p-2 rounded-xl flex items-center justify-center'>
+                            <ArrowRight size={28} strokeWidth={2} className='stroke-gray-500' />
+                        </div>
+                        <div className='flex items-center justify-center gap-20'>
+                            <div className='flex items-center justify-center gap-3'>
+                                <label htmlFor='switch' className={`flex relative cursor-pointer w-20 h-9 rounded-full transition-all duration-300 ${isActive ? "bg-vert": "bg-fonce-400"}`}>
+                                    <input id='switch' checked={isActive} onChange={(e) => setIsActive(e.target.checked)} type="checkbox" className='sr-only peer' />
+                                    <span className='w-2/5 h-[85%] bg-white rounded-full absolute left-1 top-[3px] peer-checked:left-11 transition-all duration-300'></span>
+                                </label>
+                                <span className='text-white text-base font-semibold'>Activer</span>
+                            </div>    
+                            <button className='border border-vert bg-transparent px-4 py-2 cursor-pointer rounded-xl text-vert text-lg  tracking-wide font-semibold transition duration-200 ease-in-out hover:bg-vert hover:text-fonce-600 hover:border-transparent'>
+                                Modifier
+                            </button>                   
+                        </div>
+                    </div>
+                    <div className='border border-gray-200 p-2 w-full flex items-center justify-start flex-col gap-4 overflow-auto'>
+                        <div className='w-full flex items-center justify-between'>
+                            <span className='text-white text-2xl font-bold tracking-wide'>Macbook pro 16&quot; puce M3 Max 1TB/36GB</span>
+                            <button className='border border-transparent bg-vert px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
+                                Ajuster
+                            </button>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </section>
     )
