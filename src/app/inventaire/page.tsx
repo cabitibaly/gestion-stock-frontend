@@ -1,7 +1,9 @@
 "use client";
 import Navbar from '@/components/navbar';
 import ProduitCard from '@/components/produitCard';
-import { ArrowRight, Check, ChevronDown, List, RotateCw, Search } from 'lucide-react';
+import ProduitDesc from '@/components/produitDesc';
+import { produits } from '@/data/produit';
+import { Check, ChevronDown, List, RotateCw, Search } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -12,8 +14,8 @@ const Page = () => {
     const [niveauStock, setNiveauStock] = useState<string>("")
     const [prixMin, setPrixMin] = useState<string>("")
     const [prixMax, setPrixMax] = useState<string>("")
-    const [isList, setIsList] = useState<boolean>(true)
-    const [isActive, setIsActive] = useState<boolean>(false)
+    const [isList, setIsList] = useState<boolean>(true)    
+    const [isOpen, setIsOpen] = useState<boolean>(false)           
 
     const handleClick = (): void => {
         setIsList(!isList)
@@ -147,96 +149,23 @@ const Page = () => {
                 </div>
                 <div className='rounded-xl w-3/4 h-full flex items-center justify-start flex-col gap-4 overflow-auto'>
                     <ProduitCard 
-                        id={1}
-                        image="/mac.jpg"
-                        nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
-                        categorie="Ordinateur"
-                        quantite={37}
-                        stockFaible={false}  
-                        prixAchat={1580000}
-                        prixVente={1630000}
+                        produitProps={produits[0]}
+                        setIsopen={setIsOpen}
+                        isOpen={isOpen}
                     />                    
                     <ProduitCard 
-                        id={2}
-                        image="/ultra.jpg"
-                        nomProduit="Galaxy Book 4 ultra 16&quot; core i9 1TB/32GB"
-                        categorie="Ordinateur"
-                        quantite={14}
-                        stockFaible={false}  
-                        prixAchat={1100000}
-                        prixVente={1800000}
+                        produitProps={produits[1]}
+                        setIsopen={setIsOpen}
+                        isOpen={isOpen}
                     />                    
                     <ProduitCard 
-                        id={3}
-                        image="/asus.jpg"
-                        nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
-                        categorie="Ordinateur"
-                        quantite={2}
-                        stockFaible={true} 
-                        prixAchat={780000}
-                        prixVente={830000}  
-                    />                                                          
-                    <ProduitCard 
-                        id={1}
-                        image="/mac.jpg"
-                        nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
-                        categorie="Ordinateur"
-                        quantite={37}
-                        stockFaible={false}  
-                        prixAchat={1580000}
-                        prixVente={1630000}
-                    />                    
-                    <ProduitCard 
-                        id={2}
-                        image="/ultra.jpg"
-                        nomProduit="Galaxy Book 4 ultra 16&quot; core i9 1TB/32GB"
-                        categorie="Ordinateur"
-                        quantite={14}
-                        stockFaible={false}  
-                        prixAchat={1100000}
-                        prixVente={1800000}
-                    />                    
-                    <ProduitCard 
-                        id={3}
-                        image="/asus.jpg"
-                        nomProduit="Asus Rog Zephirus G14 14&quot; AMD Ryzen 9 1TB/32GB"
-                        categorie="Ordinateur"
-                        quantite={2}
-                        stockFaible={true} 
-                        prixAchat={780000}
-                        prixVente={830000}  
-                    />                                                          
+                        produitProps={produits[2]}
+                        setIsopen={setIsOpen}
+                        isOpen={isOpen}
+                    />                                                                                                                                        
                 </div>
-            </div>
-            <div className='absolute top-0 left-0 p-4 bg-noir/70 w-full h-full flex items-start justify-end'>
-                <div className='border border-fonce-400 p-4 bg-fonce-600 rounded-2xl w-2/3 h-full flex items-center justify-start flex-col gap-4'>
-                    <div className='w-full flex items-center justify-between'>
-                        <div className='bg-fonce-400 p-2 rounded-xl flex items-center justify-center'>
-                            <ArrowRight size={28} strokeWidth={2} className='stroke-gray-500' />
-                        </div>
-                        <div className='flex items-center justify-center gap-20'>
-                            <div className='flex items-center justify-center gap-3'>
-                                <label htmlFor='switch' className={`flex relative cursor-pointer w-20 h-9 rounded-full transition-all duration-300 ${isActive ? "bg-vert": "bg-fonce-400"}`}>
-                                    <input id='switch' checked={isActive} onChange={(e) => setIsActive(e.target.checked)} type="checkbox" className='sr-only peer' />
-                                    <span className='w-2/5 h-[85%] bg-white rounded-full absolute left-1 top-[3px] peer-checked:left-11 transition-all duration-300'></span>
-                                </label>
-                                <span className='text-white text-base font-semibold'>Activer</span>
-                            </div>    
-                            <button className='border border-vert bg-transparent px-4 py-2 cursor-pointer rounded-xl text-vert text-lg  tracking-wide font-semibold transition duration-200 ease-in-out hover:bg-vert hover:text-fonce-600 hover:border-transparent'>
-                                Modifier
-                            </button>                   
-                        </div>
-                    </div>
-                    <div className='border border-gray-200 p-2 w-full flex items-center justify-start flex-col gap-4 overflow-auto'>
-                        <div className='w-full flex items-center justify-between'>
-                            <span className='text-white text-2xl font-bold tracking-wide'>Macbook pro 16&quot; puce M3 Max 1TB/36GB</span>
-                            <button className='border border-transparent bg-vert px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
-                                Ajuster
-                            </button>
-                        </div>
-                    </div>
-                </div>                
-            </div>
+            </div>            
+            { isOpen && <ProduitDesc id={1} setIsOpen={setIsOpen} isOpen={isOpen} /> }
         </section>
     )
 }

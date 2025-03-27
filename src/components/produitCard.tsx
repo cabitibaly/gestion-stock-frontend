@@ -4,24 +4,38 @@ import { Dot, Ellipsis, Eye, Pen, Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const ProduitCard = (produitProps: ProduitType) => {
+interface Props {
+    produitProps: ProduitType,
+    setIsopen: (isOpen: boolean) => void,
+    isOpen: boolean
+}
+
+const ProduitCard = ({produitProps, setIsopen, isOpen}: Props) => {
     const [isVisible, setIsvisible] = useState<boolean>(false)
-    const menuRef = useRef<HTMLButtonElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handeClickOutSide = (event: MouseEvent) => {
-            if(menuRef.current && !menuRef.current.contains(event.target as Node)) {
+            if(
+                buttonRef.current && !buttonRef.current.contains(event.target as Node) &&
+                menuRef.current && !menuRef.current.contains(event.target as Node)
+            ) {
                 setIsvisible(false)
             }
         }
 
-        document.addEventListener("mousedown", handeClickOutSide);
-
+        if (isVisible) {
+            document.addEventListener("mousedown", handeClickOutSide);
+        } else {
+            document.removeEventListener("mousedown", handeClickOutSide);
+        }
+        
         return () => {
             document.removeEventListener("mousedown", handeClickOutSide);
         }
 
-    }, [])
+    }, [isVisible])
 
     return (
         <div className="relative p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
@@ -61,13 +75,13 @@ const ProduitCard = (produitProps: ProduitType) => {
                 <span className="text-base text-gray-500 font-semibold tracking-wide">Prix d&apos;Achat</span>
                 <span className="text-base text-gray-50 font-semibold tracking-wide">{produitProps.prixAchat} FCFA</span>
             </div>
-            <button ref={menuRef} onClick={() => setIsvisible(!isVisible)} className="border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
+            <button ref={buttonRef} onClick={() => setIsvisible(!isVisible)} className="border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
                 <Ellipsis size={28} strokeWidth={2} className="stroke-gray-500" />
             </button>
             {   
                 isVisible &&
-                <div className='border border-gray-500 bg-fonce-400 z-30 absolute top-[4.5rem] right-2 rounded-xl w-1/6'>
-                    <button className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-start gap-2 transition duration-200 ease-out hover:bg-fonce-200'>
+                <div ref={menuRef} className='border border-gray-500 bg-fonce-400 z-30 absolute top-[4.5rem] right-2 rounded-xl w-1/6'>
+                    <button onClick={() =>setIsopen(!isOpen)} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-start gap-2 transition duration-200 ease-out hover:bg-fonce-200'>
                         <Eye size={24} strokeWidth={1.5} className="stroke-green-400" />
                         Voir                                
                     </button>                                
