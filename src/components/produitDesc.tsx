@@ -12,6 +12,7 @@ interface Props {
 
 const ProduitDesc = ({id, setIsOpen, isOpen}: Props) => {
     const [isActive, setIsActive] = useState<boolean>(false)
+    const [ajustementOpen, setAjustementOpen] = useState<boolean>(false)
 
     return (
         <div onClick={() => setIsOpen(!isOpen)} key={id} className='absolute top-0 left-0 z-40 p-4 bg-noir/70 w-full h-full flex items-start justify-end'>
@@ -36,7 +37,7 @@ const ProduitDesc = ({id, setIsOpen, isOpen}: Props) => {
                 <div className='w-full flex items-center justify-start flex-col gap-4 overflow-auto'>
                     <div className='w-full flex items-center justify-between'>
                         <h2 className='text-white text-3xl font-black tracking-wide'>Macbook pro 16&quot; puce M3 Max 1TB/36GB</h2>
-                        <button className='border border-transparent bg-vert px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
+                        <button onClick={() => setAjustementOpen(!ajustementOpen)} className='border border-transparent bg-vert px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
                             Ajuster
                         </button>
                     </div>
@@ -107,7 +108,7 @@ const ProduitDesc = ({id, setIsOpen, isOpen}: Props) => {
                         </div>
                     </div>
                 </div>                
-                <Ajustement />
+                { ajustementOpen && <Ajustement ajustementOpen={ajustementOpen} setAjustementOpen={setAjustementOpen} /> }
             </div>                           
         </div>
     )

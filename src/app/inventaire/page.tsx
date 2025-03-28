@@ -5,6 +5,7 @@ import ProduitDesc from '@/components/produitDesc';
 import { produits } from '@/data/produit';
 import { Check, ChevronDown, List, RotateCw, Search } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const Page = () => {
@@ -60,9 +61,9 @@ const Page = () => {
                     </div>
                 </div>
                 <hr className='border border-gray-600 h-11' />
-                <button className='border border-transparent bg-vert px-2.5 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
+                <Link href={"/inventaire/nouveau"} className='border border-transparent bg-vert px-2.5 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-vert hover:border-vert'>
                     Nouveau Produit
-                </button>                         
+                </Link>                         
             </div>
             <div className='w-full h-[75.25vh] flex items-center justify-between gap-4'>
                 <div className='relative bg-fonce-400 px-4 py-4 rounded-3xl w-1/4 h-full flex items-center justify-start flex-col gap-3'>

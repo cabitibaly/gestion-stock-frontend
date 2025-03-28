@@ -75,7 +75,7 @@ const ProduitCard = ({produitProps, setIsopen, isOpen}: Props) => {
                 <span className="text-base text-gray-500 font-semibold tracking-wide">Prix d&apos;Achat</span>
                 <span className="text-base text-gray-50 font-semibold tracking-wide">{produitProps.prixAchat} FCFA</span>
             </div>
-            <button ref={buttonRef} onClick={() => setIsvisible(!isVisible)} className="border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
+            <button ref={buttonRef} onClick={() => setIsvisible(!isVisible)} className="cursor-pointer border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
                 <Ellipsis size={28} strokeWidth={2} className="stroke-gray-500" />
             </button>
             {   
