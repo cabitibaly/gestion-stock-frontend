@@ -11,8 +11,10 @@
   "dependencies": {
     "chart.js": "^4.4.8",
     "gestion-stock-powertech": "file:",
+    "gsap": "^3.12.7",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",
+    "primereact": "^10.9.3",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0"

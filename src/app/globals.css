@@ -13,3 +13,19 @@
     --color-orange: #FF9D23;
     --color-bleu: #338DFF;
 }
+
+#datepicker .p-inputtext {
+    @apply rounded-lg border-[1.75px] border-fonce-400 hover:border-gray-500;
+}
+
+#datepicker input {
+    @apply text-lg font-semibold text-gray-300 border-[1.75px] py-1.5 bg-fonce-600 ring-0 focus:ring-gray-300 focus:border-gray-300;
+}
+
+.p-dropdown {
+    @apply w-full h-[43.2px] flex items-center justify-center bg-transparent border-[1.75px] text-gray-300 border-fonce-400 ring-0;
+}
+
+.p-dropdown-label {
+    @apply text-lg font-semibold text-gray-300
+}

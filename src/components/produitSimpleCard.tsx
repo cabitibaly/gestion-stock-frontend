@@ -1,15 +1,17 @@
 "use client"
-import { simpleProduitType } from '@/types/simpleProduits'
+import { ProduitType } from '@/types/produits'
 import { Dot, Plus } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-const ProduitSimpleCard = (produitProps: simpleProduitType) => {
+const ProduitSimpleCard = (produitProps: ProduitType) => {
     return (
-        <div className="p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
+        <div className="relative p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
             <Image src={produitProps.image} height={10} width={80} alt="mac" className="rounded-xl" />
             <div className="w-auto flex items-start justify-start flex-col gap-1">
-              <p className="text-lg text-white font-semibold line-clamp-1">{produitProps.nomProduit}</p>
+              <div className='max-w-[390px]'>
+                <p className="text-lg text-white font-semibold line-clamp-1">{produitProps.nomProduit}</p>
+              </div>              
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm text-gray-500 font-semibold">{produitProps.categorie}</span>
                 <Dot size={25} strokeWidth={2} className="stroke-gray-500" />
@@ -34,7 +36,7 @@ const ProduitSimpleCard = (produitProps: simpleProduitType) => {
             </div>
             {   
                 produitProps.ajouter &&
-                <div className="w-10 h-10 rounded-xl bg-fonce-200 flex items-center justify-center">
+                <div className="absolute right-2 cursor-pointer w-10 h-10 rounded-xl bg-fonce-200 flex items-center justify-center">
                     <Plus size={24} strokeWidth={2} className="stroke-vert" />
                 </div>
             }
