@@ -8,6 +8,7 @@ import { addLocale } from "primereact/api";
 import fr from "../../constants/fr.json";
 import { useState } from 'react';
 import VenteCard from '@/components/venteCard';
+import VenteDesc from '@/components/venteDesc';
 
 addLocale("fr", fr.fr)
 
@@ -117,11 +118,11 @@ const Vente = () => {
                             <div className="border border-gray-500 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">
                                 <button onClick={() => setStatutPaiement('Payé')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Payé
-                                    { statutPaiement === "Elevé" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
+                                    { statutPaiement === "Payé" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                                
                                 <button onClick={() => setStatutPaiement('Impayé')} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>
                                     Impayé
-                                    { statutPaiement === "Faible" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
+                                    { statutPaiement === "Impayé" && <Check size={28} strokeWidth={2.5} className='stroke-vert' /> }
                                 </button>                              
                             </div>
                         </div>
@@ -157,7 +158,7 @@ const Vente = () => {
                                 prenomClinet: "Zoro",
                                 adresseClinet: "East Blue, One Piece",
                                 montantCommande: 1630000,
-                                statutCommande: "CREE",
+                                statutCommande: "CREEE",
                                 statutPaiement: "Payé",
                                 date: new Date()
                             }
@@ -173,7 +174,7 @@ const Vente = () => {
                                 prenomClinet: "Sanji",
                                 adresseClinet: "North Blue, One Piece",
                                 montantCommande: 200000,
-                                statutCommande: "EMBALLE",
+                                statutCommande: "EMBALLEE",
                                 statutPaiement: "Impayé",
                                 date: new Date()
                             }
@@ -183,6 +184,7 @@ const Vente = () => {
                     />
                 </div>
             </div>
+            { isOpen && <VenteDesc id={1} setIsOpen={setIsOpen} isOpen={isOpen} /> }
         </section>
     )
 }

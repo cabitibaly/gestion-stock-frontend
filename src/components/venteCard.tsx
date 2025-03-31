@@ -1,7 +1,8 @@
 import { VenteType } from '@/types/vente'
-import { CircleCheckBig, Dot, Ellipsis, Eye, MapPin, Pen, Trash, User2 } from 'lucide-react'
+import { Dot, Ellipsis, Eye, MapPin, Pen, Trash, User2 } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
+import StatutCommande from './statutCommande'
 
 interface Props {
     venteProps: VenteType,
@@ -87,28 +88,7 @@ const VenteCard = ({ venteProps, setIsopen, isOpen }: Props) => {
             </div>
             <div className='bg-fonce-200 w-full py-3 px-4 rounded-lg flex items-start justify-start flex-col gap-2'>
                 <span className='text-xl text-white font-bold tracking-wide'>Commande créée, <span className='text-gray-500'>{venteProps.date.toLocaleDateString("fr-FR")}</span></span>
-                <ol className="flex items-center w-full">
-                    <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-300 after:border-4 after:inline-block">
-                        <span className="flex items-center justify-center w-10 h-10 bg-blue-300 rounded-full shrink-0">
-                            <CircleCheckBig size={20} strokeWidth={2} className="stroke-bleu" />
-                        </span>
-                    </li>
-                    <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-400 after:border-4 after:inline-block">
-                        <span className="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full shrink-0">                                        
-                            <Image src={"/emballe-gris.png"} width={20} height={16} alt="emballe-gris" />                                        
-                        </span>
-                    </li>
-                    <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-400 after:border-4 after:inline-block">
-                        <span className="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full shrink-0">
-                            <Image src={"/expedie-gris.png"} width={20} height={16} alt="expedie-gris" />                                        
-                        </span>
-                    </li>
-                    <li className="flex items-center w-full">
-                        <span className="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full shrink-0">
-                            <Image src={"/livre-gris.png"} width={20} height={16} alt="livre-gris" />                                        
-                        </span>
-                    </li>
-                </ol>
+                <StatutCommande statutCommande={venteProps.statutCommande} />
             </div>
         </div>
     )

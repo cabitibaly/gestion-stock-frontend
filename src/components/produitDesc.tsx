@@ -3,12 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import Ajustement from "./ajustement";
-
-interface Props {
-    id: number,
-    setIsOpen: (isOpen: boolean) => void,
-    isOpen: boolean
-}
+import { Props } from "@/interface/simpleProps";
 
 const ProduitDesc = ({id, setIsOpen, isOpen}: Props) => {
     const [isActive, setIsActive] = useState<boolean>(false)
