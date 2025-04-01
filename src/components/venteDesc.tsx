@@ -4,9 +4,15 @@ import { ArrowLeft, ArrowRight, Check, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import StatutCommande from "./statutCommande";
+import EnregistrerUnPaiement from "./enregistrerUnPaiement";
 
 const VenteDesc = ({ id, setIsOpen, isOpen }: Props) => {
     const [statut, setStatut] = useState<string>("Créée")
+    const [isPaiementOpen, setIsPaiementOpen] = useState<boolean>(false)    
+
+    const afficherPdf = () => {
+        window.open("https://res.cloudinary.com/dadbkjo4m/raw/upload/v1742893902/factures/ht00xbotq9wmii7q0xpk.pdf", "_blank")
+    }
 
     return (
         <div onClick={() => setIsOpen(!isOpen)} key={id} className='absolute top-0 left-0 z-40 p-4 bg-noir/70 w-full h-full flex items-start justify-end'>
@@ -145,10 +151,57 @@ const VenteDesc = ({ id, setIsOpen, isOpen }: Props) => {
                                 </p>
                             </div>
                         </div>
-                        <div className="p-2 bg-fonce-400 rounded-lg w-1/3 flex items-start justify-start flex-col gap-4">                            
+                        <div className="px-4 py-2.5 bg-fonce-400 rounded-lg w-1/3 flex items-start justify-start flex-col gap-4"> 
+                            <div className="w-full flex items-start justify-start flex-col gap-2">
+                                <span className="text-white text-xl font-semibold">Facture</span>   
+                                <div className="py-2 bg-fonce-200 w-full rounded-lg flex items-center justify-start flex-col gap-2">
+                                    <div className="border-b border-gray-400 pb-2 px-2 w-full flex items-center justify-between">
+                                        <span className="text-white text-lg font-semibold uppercase">#Fact-215</span>   
+                                        <button onClick={() => afficherPdf()} className="text-vert text-lg font-semibold hover:underline cursor-pointer">Voir la facture</button>   
+                                    </div>   
+                                    <div className="px-2 w-full flex items-center justify-start flex-col gap-2">
+                                        <div className="w-full flex items-center justify-between">
+                                            <span className="text-gray-500 text-sm font-semibold uppercase">Montant reçu</span>
+                                            <span className="text-white text-sm font-semibold">0 FCFA</span>
+                                        </div> 
+                                        <div className="w-full flex items-center justify-between">
+                                            <span className="text-gray-500 text-sm font-semibold uppercase">Montant Total</span>
+                                            <span className="text-white text-sm font-semibold">1630000 FCFA</span>
+                                        </div> 
+                                        <button onClick={() => setIsPaiementOpen(true)} className='border border-vert bg-transparent w-full py-2 cursor-pointer rounded-xl text-vert text-sm  tracking-wide font-semibold transition duration-200 ease-in-out hover:bg-vert hover:text-fonce-600 hover:border-transparent'>
+                                            Enregistrer un Paiement
+                                        </button> 
+                                    </div>                                 
+                                </div>
+                            </div>                                                                               
+                            <div className="w-full flex items-start justify-start flex-col gap-2">
+                                <span className="text-white text-xl font-semibold">Client</span>   
+                                <div className="px-2 py-3 bg-fonce-200 w-full rounded-lg flex items-center justify-start flex-col gap-2">                                       
+                                    <div className="w-full flex items-center justify-start gap-3">
+                                        <Image src="/zoro.jpg" height={10} width={45} alt="mac" className="rounded-2xl" />
+                                        <span className="text-white text-lg font-semibold">Roronoa Zoro</span>
+                                    </div> 
+                                    <div className="w-full flex items-center justify-between">
+                                        <span className="text-gray-500 text-sm font-semibold uppercase">Telephone</span>
+                                        <span className="text-white text-sm font-semibold">+226 61500768</span>
+                                    </div>                              
+                                    <div className="w-full flex items-center justify-between">
+                                        <span className="text-gray-500 text-sm font-semibold uppercase">Email</span>
+                                        <span className="text-white text-sm font-semibold">roronoazoro@mugiwara.op</span>
+                                    </div>                              
+                                    <div className="w-full flex items-center justify-between">
+                                        <span className="text-gray-500 text-sm font-semibold uppercase">Site</span>
+                                        <span className="text-white text-sm font-semibold">roronoazoro.bushi</span>
+                                    </div> 
+                                    <button className='mt-1 border border-vert bg-transparent w-full py-2 cursor-pointer rounded-xl text-vert text-sm  tracking-wide font-semibold transition duration-200 ease-in-out hover:bg-vert hover:text-fonce-600 hover:border-transparent'>
+                                        Voir le Profil
+                                    </button>                             
+                                </div>
+                            </div>                                                                               
                         </div>
                     </div>
                 </div>
+                { isPaiementOpen && <EnregistrerUnPaiement id={id} setIsOpen={setIsPaiementOpen} isOpen={isPaiementOpen} /> }                
             </div>
         </div>
     )

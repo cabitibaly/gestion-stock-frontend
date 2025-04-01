@@ -49,13 +49,12 @@ const Page = () => {
                     <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
                         <div className='w-full flex items-start justify-center flex-col gap-4'>
                             <span className="text-gray-50 text-lg font-semibold">Nom du produit</span>
-                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='ex: lenovo yoga 729 15-Kib' />
+                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='ex: lenovo yoga 729 15-Kib' />
                         </div>
                         <div className="w-full flex items-start justify-center flex-col gap-4">
                             <span className="text-gray-50 text-lg font-semibold">Categorie</span>
                             <div className='w-full'>
-                                <Dropdown 
-                                    id='raison'                   
+                                <Dropdown                   
                                     value={categorie}                               
                                     options={["ordinateur", "tablette", "smartphone", "autres"]}
                                     optionLabel="label"
@@ -69,16 +68,16 @@ const Page = () => {
                         <div className='w-full flex items-center justify-between'>
                             <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
                                 <span className="text-gray-50 text-lg font-semibold">SKU</span>
-                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='LNV-YOG-720' />
+                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='LNV-YOG-720' />
                             </div>
                             <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
                                 <span className="text-gray-50 text-lg font-semibold">Barcode</span>
-                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='xxxxxxxx' />
+                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='xxxxxxxx' />
                             </div>
                         </div>
                         <div className='w-full flex items-start justify-center flex-col gap-4'>
                             <span className="text-gray-50 text-lg font-semibold">Description</span>
-                            <textarea className='border-[1.5px] border-fonce-400 w-full h-36 py-1.5 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400 resize-none' placeholder="Plus de détail sur le prod..." ></textarea>
+                            <textarea className='border-[1.5px] border-fonce-400 w-full h-36 py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400 resize-none' placeholder="Plus de détail sur le prod..." ></textarea>
                         </div>
                         <div className='w-full flex items-start justify-center flex-col gap-4'>
                             <span className="text-gray-50 text-lg font-semibold">Images</span>
@@ -106,7 +105,7 @@ const Page = () => {
                                 <div className='bg-fonce-200 rounded-s-xl w-[10%] flex items-center justify-center text-lg text-white font-semibold'>
                                     FCFA
                                 </div>
-                                <input type="text" className='w-full rounded-e-xl py-1.5 px-2 text-gray-50 text-lg outline-none border-[1.5px] border-fonce-400  placeholder:text-gray-400' placeholder='0' />                            
+                                <input type="text" className='w-full rounded-e-xl py-1.5 px-2 text-gray-50 text-lg font-semibold outline-none border-[1.5px] border-fonce-400  placeholder:text-gray-400' placeholder='0' />                            
                             </div>
                         </div>
                         <div className="w-full flex items-start justify-center flex-col gap-4">
@@ -115,7 +114,7 @@ const Page = () => {
                                 <div className='bg-fonce-200 rounded-s-xl w-[10%] flex items-center justify-center text-lg text-white font-semibold'>
                                     FCFA
                                 </div>
-                                <input type="text" className='w-full rounded-e-xl py-1.5 px-2 text-gray-50 text-lg outline-none border-[1.5px] border-fonce-400  placeholder:text-gray-400' placeholder='0' />                            
+                                <input type="text" className='w-full rounded-e-xl py-1.5 px-2 text-gray-50 text-lg font-semibold outline-none border-[1.5px] border-fonce-400  placeholder:text-gray-400' placeholder='0' />                            
                             </div>
                         </div>
                     </div>  
@@ -125,11 +124,11 @@ const Page = () => {
                     <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
                         <div className="w-full flex items-start justify-center flex-col gap-4">
                             <span className="text-gray-50 text-lg font-semibold">Quantité</span>                            
-                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='0' />                            
+                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='0' />                            
                         </div>                        
                         <div className="w-full flex items-start justify-center flex-col gap-4">
                             <span className="text-gray-50 text-lg font-semibold">Seuil</span>                            
-                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='0' />                            
+                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='0' />                            
                         </div>                        
                     </div>  
                 }          
