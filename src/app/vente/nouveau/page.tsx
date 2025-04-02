@@ -3,7 +3,7 @@ import { ArrowLeft, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { addLocale } from "primereact/api";
 import fr from "../../../constants/fr.json";
 import ProduitSimpleCard from "@/components/produitSimpleCard";
@@ -23,20 +23,27 @@ const NouvelleVente = () => {
     const [rue, setRue] = useState<string>("")
     const [recherche, setRecherche] = useState<string>("")
     const [lignesVente, setLignesVente] = useState<LigneVente[]>([])
+    const [reduction, setReduction] = useState<string>("")
+    const [total, setTotal] = useState<number>(0)
+    const [totalSansReduction, setTotalSansReduction] = useState<number>(0)
 
     const ajouterUneLigne = (id: number) => {        
         setLignesVente(prev => {
-            const existe = prev.some((ligne) => ligne.produitId === id);
+            const existe = prev.some((ligne) => ligne.produitId === id);        
                             
             if (existe) {                  
               return prev;
-            }                        
+            }       
+            
+            const produit = produits.find(e => e.id === id)
+            if (!produit) return prev;
+
             return [
                 ...prev, 
                 {
                     produitId: id,
                     quantite: 0,
-                    prixUnitaire: 0,
+                    prixUnitaire: produit.prixVente,
                     prixTotal: 0
                 }
             ];            
@@ -57,13 +64,28 @@ const NouvelleVente = () => {
 
     const modifierQuantite = (e: ChangeEvent<HTMLInputElement>, id: number) => {
         const nouvelleQuantite = Number(e.target.value) || 0;
-      
+
         setLignesVente((prev) =>
           prev.map((ligne) =>
-            ligne.produitId === id ? { ...ligne, quantite: nouvelleQuantite } : ligne
+            ligne.produitId === id ? { ...ligne, quantite: nouvelleQuantite, prixTotal: nouvelleQuantite * ligne.prixUnitaire,  } : ligne
           )
         );
     };
+
+    useEffect(() => {
+
+        const totalSansReduction = lignesVente.reduce((acc, ligne) => acc + ligne.prixTotal, 0)
+        const total = totalSansReduction - Number(reduction)
+        setTotalSansReduction(totalSansReduction)
+        setTotal(total)
+
+        if (lignesVente.length === 0) {
+            setReduction("")
+            setTotalSansReduction(0)
+            setTotal(0)
+        }
+
+    }, [lignesVente, reduction])
 
     console.log(lignesVente)
     
@@ -269,7 +291,38 @@ const NouvelleVente = () => {
                                     })
                                 }
                             </div>
-                        }                     
+                        }   
+
+                        {
+                            lignesVente.length > 0 &&
+                            <div className='self-end w-3/4 flex items-center justify-end flex-col gap-4'>
+                                <div className="w-full flex items-center justify-between">
+                                    <div className="w-1/2 flex items-center justify-start">
+                                        <span className="text-gray-50 text-sm font-semibold uppercase">Total sans réduction</span>
+                                    </div>
+                                    <div className="w-1/2 flex items-center justify-end">
+                                        <span className="text-gray-50 text-sm font-semibold uppercase">{totalSansReduction} FCFA</span>
+                                    </div>
+                                </div>
+                                <div className="w-full flex items-center justify-between">
+                                    <div className="w-1/2 flex items-center justify-start">
+                                        <span className="text-gray-50 text-sm font-semibold uppercase">Réduction</span>
+                                    </div>
+                                    <div className="w-1/2 flex items-center justify-end">
+                                        <input value={reduction} onChange={e => setReduction(e.target.value)} type="text" className='border-b-[1.5px] border-fonce-400 w-1/2 py-1.5 px-2 text-gray-50 text-sm text-right font-semibold outline-none focus:ring-gray-300 focus:border-b-gray-300 placeholder:text-gray-400' placeholder='0' />
+                                    </div>
+                                </div>
+                                <hr className="border-b border-gray-600 w-full" />
+                                <div className="w-full flex items-center justify-between">
+                                    <div className="w-1/2 flex items-center justify-start">
+                                        <span className="text-gray-50 text-base font-semibold uppercase">Total</span>
+                                    </div>
+                                    <div className="w-1/2 flex items-center justify-end">
+                                        <span className="text-gray-50 text-base font-semibold uppercase">{total} FCFA</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }                  
                     </div>  
                 }          
             </div>
