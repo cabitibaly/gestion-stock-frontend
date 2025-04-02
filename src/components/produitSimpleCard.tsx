@@ -1,10 +1,19 @@
 "use client"
 import { ProduitType } from '@/types/produits'
-import { Dot, Plus } from 'lucide-react'
+import { Dot, Plus, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-const ProduitSimpleCard = (produitProps: ProduitType) => {
+interface ProduitSimpleCardProps {
+  produitProps: ProduitType,
+  btnAjouter?: boolean, 
+  btnSupprimer?: boolean,
+  handleAjouter?: (id: number) => void,
+  handleSupprimer?: (id: number) => void
+}
+
+const ProduitSimpleCard = ({produitProps, btnAjouter, btnSupprimer, handleAjouter, handleSupprimer}: ProduitSimpleCardProps) => {    
+
     return (
         <div className="relative p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
             <Image src={produitProps.image} height={10} width={80} alt="mac" className="rounded-xl" />
@@ -35,9 +44,15 @@ const ProduitSimpleCard = (produitProps: ProduitType) => {
               </div>
             </div>
             {   
-                produitProps.ajouter &&
-                <div className="absolute right-2 cursor-pointer w-10 h-10 rounded-xl bg-fonce-200 flex items-center justify-center">
+                btnAjouter &&
+                <div onClick={() => handleAjouter?.(produitProps.id)} className="absolute right-2 cursor-pointer w-10 h-10 rounded-xl bg-fonce-200 flex items-center justify-center">
                     <Plus size={24} strokeWidth={2} className="stroke-vert" />
+                </div>
+            }
+            {   
+                btnSupprimer &&
+                <div onClick={() => handleSupprimer?.(produitProps.id)} className="absolute right-2 cursor-pointer w-10 h-10 rounded-xl bg-fonce-200 flex items-center justify-center">
+                  <X size={24} strokeWidth={2} className="stroke-gray-500" />
                 </div>
             }
         </div>

@@ -132,13 +132,13 @@ const Page = () => {
                             <div className='bg-fonce-200 rounded-s-xl w-[20%] flex items-center justify-center text-lg text-white font-semibold'>
                                 FCFA
                             </div>
-                            <input value={prixMin} onChange={e => setPrixMin(e.target.value)} type="text" className='py-2 px-3 rounded-e-xl w-[80%] text-gray-50 text-lg outline-none placeholder:text-gray-400' placeholder='Prix Minimum' />                            
+                            <input value={prixMin} onChange={e => setPrixMin(e.target.value)} type="text" className='py-2 px-3 rounded-e-xl w-[80%] text-gray-50 text-lg font-semibold outline-none placeholder:text-gray-400' placeholder='Prix Minimum' />                            
                         </div>
                         <div className='border border-gray-500 h- rounded-xl flex'>
                             <div className='bg-fonce-200 rounded-s-xl w-[20%] flex items-center justify-center text-lg text-white font-semibold'>
                                 FCFA
                             </div>
-                            <input value={prixMax} onChange={e => setPrixMax(e.target.value)} type="text" className='py-2 px-3 rounded-e-xl w-[80%] text-gray-50 text-lg outline-none placeholder:text-gray-400' placeholder='Prix Maximun' />                            
+                            <input value={prixMax} onChange={e => setPrixMax(e.target.value)} type="text" className='py-2 px-3 rounded-e-xl w-[80%] text-gray-50 text-lg font-semibold outline-none placeholder:text-gray-400' placeholder='Prix Maximun' />                            
                         </div>
                     </div>
                     <div className='absolute bottom-0 rounded-b-2xl bg-fonce-200 py-4 w-full flex items-center justify-center'>
