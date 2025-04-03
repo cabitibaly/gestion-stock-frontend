@@ -82,7 +82,7 @@ const NouveauClient = () => {
                             </div>
                         </div>
                         {   typeClient === "Moral" &&
-                            <div className="w-full flex flex-col gap-6 transition-all duration-200 ease-linear">
+                            <div className="w-full flex flex-col gap-6">
                                 <div className='w-full flex items-center justify-between'>
                                     <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
                                         <span className="text-gray-50 text-lg font-semibold">N° IFU</span>
@@ -108,11 +108,17 @@ const NouveauClient = () => {
                     </div>                    
                 } 
 
-                {   etape === 2 &&
+                {   etape === 2 &&                    
                     <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
-                        <div className='w-full flex items-start justify-center flex-col gap-4'>
-                            <span className="text-gray-50 text-lg font-semibold">Téléphone</span>
-                            <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='ex: +000 00 00 00 00' />
+                        <div className='w-full flex items-center justify-between'>
+                            <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
+                                <span className="text-gray-50 text-lg font-semibold">Adresse</span>
+                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='ex: Secteur 09' />
+                            </div>
+                            <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
+                                <span className="text-gray-50 text-lg font-semibold">Téléphone</span>
+                                <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='ex: +000 00 00 00 00' />
+                            </div>
                         </div>                        
                         <div className='w-full flex items-start justify-center flex-col gap-4'>
                             <span className="text-gray-50 text-lg font-semibold">Email</span>
@@ -121,7 +127,7 @@ const NouveauClient = () => {
                         <div className='w-full flex items-start justify-center flex-col gap-4'>
                             <span className="text-gray-50 text-lg font-semibold">Site Web</span>
                             <input type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='ex: example.com' />
-                        </div>                        
+                        </div>                      
                     </div>  
                 }
             </div>
