@@ -1,8 +1,8 @@
-export type VenteType = {
+export type BonType = {
     id: number,
-    nomClient: string,
-    prenomClient: string,
-    adresseClinet: string,
+    nomFournisseur: string,
+    prenomFournisseur: string,
+    adresseLivraison: string,
     montantCommande: number,
     statutCommande: string,
     statutPaiement: string,
