@@ -7,10 +7,11 @@ import VenteCard from "./venteCard"
 
 const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
     const [isTransaction, setIsTransaction] = useState<boolean>(false)
+    const typeClient: string = "Physique"
 
     return (
         <div onClick={() => setIsOpen(!isOpen)} key={id} className='absolute top-0 left-0 z-40 p-4 bg-noir/70 w-full h-full flex items-start justify-end'>
-            <div onClick={(e) => e.stopPropagation()} className='relative border border-fonce-400 p-4 bg-fonce-600 rounded-2xl w-[60%] h-full flex items-center justify-start flex-col gap-6'>
+            <div onClick={(e) => e.stopPropagation()} className={`${typeClient === "Moral" ? "w-[65%]" : "w-[60%]"} relative border border-fonce-400 p-4 bg-fonce-600 rounded-2xl h-full flex items-center justify-start flex-col gap-6`}>
                 <div className='w-full flex items-center justify-between'>
                     <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer bg-fonce-400 p-2 rounded-xl flex items-center justify-center'>
                         <ArrowRight size={28} strokeWidth={2} className='stroke-gray-500' />
@@ -48,7 +49,7 @@ const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
                     {
                         !isTransaction &&
                         <div className="w-full flex items-start justify-between gap-4">
-                            <div className="w-1/2 flex items-start justify-start flex-col gap-6">
+                            <div className={`${typeClient === "Moral" ? "w-[65%]" : "w-1/2"} flex items-start justify-start flex-col gap-6`}>
                                 <div className='w-full flex items-start jusify-start flex-col gap-4'>
                                     <h4 className="text-white text-2xl font-bold tracking-wide">Détails du Client</h4>
                                     <div className="w-full flex items-start justify-between gap-2">                                    
@@ -56,11 +57,19 @@ const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
                                             <span className="text-gray-500 text-lg font-semibold uppercase">Type de client</span>
                                             <span className="text-gray-500 text-lg font-semibold uppercase">Source</span>
                                             <span className="text-gray-500 text-lg font-semibold uppercase">Créance</span>
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">N° IFU</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">RCCM</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">Régime fiscal</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">Division Fiscale</span>}
                                         </div>
-                                        <div className="w-1/2 flex flex-col items-start justify-start gap-2">
+                                        <div className="w-[55%] flex flex-col items-start justify-start gap-2">
                                             <span className="text-gray-50 text-lg font-semibold">Physique</span>
                                             <span className="text-gray-50 text-lg font-semibold">Ajout Manuel</span>
                                             <span className="text-gray-50 text-lg font-semibold">100000 FCFA</span>
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">XXXXXXXXX</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">XX-XXX-00-0000-X-00000</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">XXX</span>}
+                                            {typeClient === "Moral" && <span className="text-gray-500 text-lg font-semibold uppercase">XXX/XXXX</span>}
                                         </div>
                                     </div>
                                 </div>
@@ -71,11 +80,17 @@ const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
                                             <span className="text-gray-500 text-lg font-semibold uppercase">Téléphone</span>
                                             <span className="text-gray-500 text-lg font-semibold uppercase">Site Web</span>
                                         </div>
-                                        <div className="w-1/2 flex flex-col items-start justify-start gap-2">                                        
+                                        <div className="w-[55%] flex flex-col items-start justify-start gap-2">                                        
                                             <span className="text-gray-50 text-lg font-semibold">+226 61500768</span>
                                             <span className="text-gray-50 text-lg font-semibold">roronoazoro.bushi</span>
                                         </div>                                    
                                     </div>
+                                </div>
+                                <div className='w-full flex items-start jusify-start flex-col gap-2'>
+                                    <h4 className="text-white text-2xl font-bold tracking-wide">Note</h4>
+                                    <p className="w-full text-gray-400 text-lg font-semibold">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    </p>
                                 </div>
                             </div>
                             <div className="px-4 py-4 bg-fonce-400 rounded-lg w-1/2 flex items-start justify-start flex-col gap-4">
