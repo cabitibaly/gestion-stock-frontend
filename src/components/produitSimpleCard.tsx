@@ -1,5 +1,5 @@
 "use client"
-import { ProduitType } from '@/types/produits'
+import { ProduitType } from '@/types/produitsType'
 import { Dot, Plus, X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'

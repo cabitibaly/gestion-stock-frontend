@@ -1,4 +1,4 @@
-import { VenteType } from '@/types/vente'
+import { VenteType } from '@/types/venteType'
 import { Dot, Ellipsis, Eye, MapPin, Pen, Trash, User2 } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
