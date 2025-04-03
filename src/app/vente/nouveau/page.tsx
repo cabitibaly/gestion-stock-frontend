@@ -74,6 +74,23 @@ const NouvelleVente = () => {
 
     useEffect(() => {
 
+        const regex = /^[1-9]\d*$/;
+        const quantiteExiste = lignesVente.some((ligne) => ligne.quantite > 0)
+
+        if (!quantiteExiste) {
+            setReduction("")
+            setTotalSansReduction(0)
+            setTotal(0)
+            return
+        }
+
+        if(!regex.test(reduction)) {
+            setReduction("")
+            setTotalSansReduction(0)
+            setTotal(0)
+            return
+        }
+
         const totalSansReduction = lignesVente.reduce((acc, ligne) => acc + ligne.prixTotal, 0)
         const total = totalSansReduction - Number(reduction)
         setTotalSansReduction(totalSansReduction)
