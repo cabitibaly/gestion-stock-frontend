@@ -167,7 +167,7 @@ const BonDesc = ({ id, setIsOpen, isOpen }: Props) => {
                             </div>
                         </div>
                         <div className="px-4 py-2.5 bg-fonce-400 rounded-lg w-1/3 flex items-start justify-start flex-col gap-4"> 
-                        <div className="w-full flex items-start justify-start flex-col gap-2">
+                            <div className="w-full flex items-start justify-start flex-col gap-2">
                                 <span className="text-white text-xl font-semibold">Fournisseur</span>   
                                 <div className="px-2 py-3 bg-fonce-200 w-full rounded-lg flex items-center justify-start flex-col gap-2">                                       
                                     <div className="w-full flex items-center justify-start gap-3">
