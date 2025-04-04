@@ -38,7 +38,7 @@ const ProduitCard = ({produitProps, setIsopen, isOpen}: Props) => {
     }, [isVisible])
 
     return (
-        <div className="relative p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
+        <div onClick={() =>setIsopen(!isOpen)} className="relative p-2 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-4">
             <Image src={produitProps.image} height={10} width={80} alt="mac" className="rounded-xl" />
             <div className="w-auto flex items-start justify-start flex-col gap-1">
                 <div className='max-w-[450px]'>
@@ -75,7 +75,7 @@ const ProduitCard = ({produitProps, setIsopen, isOpen}: Props) => {
                 <span className="text-base text-gray-500 font-semibold tracking-wide">Prix d&apos;Achat</span>
                 <span className="text-base text-gray-50 font-semibold tracking-wide">{produitProps.prixAchat} FCFA</span>
             </div>
-            <button ref={buttonRef} onClick={() => setIsvisible(!isVisible)} className="cursor-pointer border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
+            <button ref={buttonRef} onClick={(e) => {setIsvisible(!isVisible); e.stopPropagation()}} className="cursor-pointer border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
                 <Ellipsis size={28} strokeWidth={2} className="stroke-gray-500" />
             </button>
             {   

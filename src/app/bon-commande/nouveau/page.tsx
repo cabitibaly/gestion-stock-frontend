@@ -1,4 +1,7 @@
 "use client";
+import ProduitSimpleCard from "@/components/produitSimpleCard";
+import { produits } from "@/data/produit";
+import { LigneVente } from "@/interface/ligneVente";
 import { ArrowLeft, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { Calendar } from "primereact/calendar";
@@ -6,15 +9,14 @@ import { Dropdown } from "primereact/dropdown";
 import { ChangeEvent, useEffect, useState } from "react";
 import { addLocale } from "primereact/api";
 import fr from "../../../constants/fr.json";
-import ProduitSimpleCard from "@/components/produitSimpleCard";
-import { produits } from "@/data/produit";
-import { LigneVente } from "@/interface/ligneVente";
+import { fournisseurData } from "@/data/fournisseurData";
+import { emailModel } from "@/constants/email";
 
 addLocale("fr", fr.fr)
 
-const NouvelleVente = () => {
+const NouveauBon = () => {
     const [etape, setEtape] = useState<number>(1)
-    const [client, setClient] = useState<string>("")
+    const [fournisseur, setFournisseur] = useState<string>("")
     const [date, setDate] = useState<Date | null>(null)
     const [methodePaiement, setMethodePaiement] = useState<string>("")
     const [pays, setPays] = useState<string>("")
@@ -26,6 +28,10 @@ const NouvelleVente = () => {
     const [reduction, setReduction] = useState<string>("")
     const [total, setTotal] = useState<number>(0)
     const [totalSansReduction, setTotalSansReduction] = useState<number>(0)
+    const [destinataire, setDestinataire] = useState<string>("")
+    const [destinateur, setDestinateur] = useState<string>("")
+    const [objet, setObjet] = useState<string>("") 
+    const [contenu, setContenu] = useState<string>(emailModel)   
 
     const ajouterUneLigne = (id: number) => {        
         setLignesVente(prev => {
@@ -110,9 +116,10 @@ const NouvelleVente = () => {
         produit.nomProduit.toLowerCase().includes(recherche.toLowerCase())
     ))
 
+
     return (
         <section className="relative p-6 bg-noir w-full h-screen flex items-center justify-start flex-col gap-4">
-            <Link href="/vente" className="self-start cursor-pointer flex items-center justify-center gap-2 group">
+            <Link href="/bon-commande" className="self-start cursor-pointer flex items-center justify-center gap-2 group">
                 <ArrowLeft size={28} strokeWidth={2} className="stroke-gray-500 transition duration-200 ease-in group-hover:stroke-bleu" />
                 <span className="text-gray-500 text-xl font-semibold transition duration-200 ease-in group-hover:text-bleu">Retour</span>
             </Link>
@@ -134,29 +141,37 @@ const NouvelleVente = () => {
                         </div>                    
                         <hr className={`border w-32 transition-all duration-200 ease-linear ${etape > 2 ? "border-bleu" : "border-gray-500"}`} />
                         <div className="flex items-center justify-center gap-2">
-                            <div className={`border-[1.5px] w-10 h-10 rounded-full flex items-center justify-center transition-all delay-100 duration-200 ${etape === 3 ? "border-bleu" : "border-gray-500"}`}>
-                                <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${etape === 3 ? "text-bleu" : "text-gray-500"}`}>3</span>
+                            <div className={`border-[1.5px] w-10 h-10 rounded-full flex items-center justify-center transition-all delay-100 duration-200 ${[1, 2].includes(etape) ? "border-gray-500" : etape === 3 ? "border-bleu" : "bg-bleu border-transparent"}`}>
+                                <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${[1, 2].includes(etape) ? "text-gray-500" : etape === 3 ? "text-bleu" : "text-fonce-600"}`}>3</span>
                             </div>
-                            <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${etape === 3 ? "text-bleu" : "text-gray-500"}`}>Produits</span>
+                            <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${[1, 2].includes(etape) ? "text-gray-500" : "text-bleu"}`}>Produits</span>
+                        </div> 
+                        <hr className={`border w-32 transition-all duration-200 ease-linear ${etape > 3 ? "border-bleu" : "border-gray-500"}`} />   
+                        <div className="flex items-center justify-center gap-2">
+                            <div className={`border-[1.5px] w-10 h-10 rounded-full flex items-center justify-center transition-all delay-100 duration-200 ${etape === 4 ? "border-bleu" : "border-gray-500"}`}>
+                                <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${etape === 4 ? "text-bleu" : "text-gray-500"}`}>4</span>
+                            </div>
+                            <span className={`text-lg font-medium transition-all delay-100 duration-200 ease-initial ${etape === 4 ? "text-bleu" : "text-gray-500"}`}>Envoyer Un mail</span>
                         </div>    
                     </div>   
                     <h5 className="text-2xl text-white font-semibold tracking-wide transition-all duration-200 ease-in-out">
                         {
                             etape === 1 ? "Information Générale" :
-                            etape === 2 ? "Détails Livraison" : "Produits"                            
+                            etape === 2 ? "Détails Livraison" : 
+                            etape === 3 ? "Produits" : "Envoyer Un mail"
                         }    
                     </h5>                                 
                 </div>  
                 {   etape === 1 &&
-                    <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
+                    <div className="rounded-xl bg-fonce-600 p-4 w-[60%] max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
                         <div className="w-full flex items-start justify-center flex-col gap-4">
-                            <span className="text-gray-50 text-lg font-semibold">Client</span>
+                            <span className="text-gray-50 text-lg font-semibold">Fournisseur</span>
                             <div className='w-full'>
                                 <Dropdown                   
-                                    value={client}                               
-                                    options={["Roronoa Zoro", "Vinsmoke Sanji", "Nami", "Monkey D Luffy"]}
+                                    value={fournisseur}                               
+                                    options={fournisseurData}
                                     optionLabel="label"
-                                    onChange={(e) => setClient(e.value as string)}
+                                    onChange={(e) => setFournisseur(e.value as string)}
                                     placeholder="Selectionner.."
                                     highlightOnSelect={false}
                                     checkmark={false}
@@ -203,7 +218,7 @@ const NouvelleVente = () => {
                 } 
 
                 {   etape === 2 &&
-                    <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">                        
+                    <div className="rounded-xl bg-fonce-600 p-4 w-[60%] max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">                        
                         <div className='w-full flex items-center justify-between'>
                             <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
                                 <span className="text-gray-50 text-lg font-semibold">Pays</span>
@@ -250,7 +265,7 @@ const NouvelleVente = () => {
                 }
 
                 {   etape === 3 &&
-                    <div className="rounded-xl bg-fonce-600 p-4 w-3/4 max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
+                    <div className="rounded-xl bg-fonce-600 p-4 w-[60%] max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">
                         <div className="bg-fonce-200 p-4 rounded-lg w-full flex items-start justify-start flex-col gap-2">
                             <form onSubmit={(e) => e.preventDefault()} className="w-full flex items-center">   
                                 <label htmlFor="faq-search" className="sr-only">Recherche</label>
@@ -312,7 +327,7 @@ const NouvelleVente = () => {
 
                         {
                             lignesVente.length > 0 &&
-                            <div className='self-end w-3/4 flex items-center justify-end flex-col gap-4'>
+                            <div className='self-end w-[55%] flex items-center justify-end flex-col gap-4'>
                                 <div className="w-full flex items-center justify-between">
                                     <div className="w-1/2 flex items-center justify-start">
                                         <span className="text-gray-50 text-sm font-semibold uppercase">Total sans réduction</span>
@@ -326,7 +341,7 @@ const NouvelleVente = () => {
                                         <span className="text-gray-50 text-sm font-semibold uppercase">Réduction</span>
                                     </div>
                                     <div className="w-1/2 flex items-center justify-end">
-                                        <input value={reduction} onChange={e => setReduction(e.target.value)} type="text" className='border-b-[1.5px] border-fonce-400 w-1/2 py-1.5 px-2 text-gray-50 text-sm text-right font-semibold outline-none focus:ring-gray-300 focus:border-b-gray-300 placeholder:text-gray-400' placeholder='0' />
+                                        <input pattern="^\d+$" value={reduction} onChange={e => setReduction(e.target.value)} type="text" className='border-b-[1.5px] border-fonce-400 w-1/2 py-1.5 px-2 text-gray-50 text-sm text-right font-semibold outline-none focus:ring-gray-300 focus:border-b-gray-300 placeholder:text-gray-400' placeholder='0' />
                                     </div>
                                 </div>
                                 <hr className="border-b border-gray-600 w-full" />
@@ -341,7 +356,30 @@ const NouvelleVente = () => {
                             </div>
                         }                  
                     </div>  
-                }          
+                } 
+
+                {   etape === 4 &&
+                    <div className="rounded-xl bg-fonce-600 p-4 w-[60%] max-h-[80%] flex items-center justify-start flex-col gap-6 overflow-auto">                        
+                        <div className='w-full flex items-start justify-center flex-col gap-4'>
+                            <span className="text-gray-50 text-lg font-semibold">Object</span>
+                            <input value={objet} onChange={e => setObjet(e.target.value)} type="text" className='border-[1.5px] border-fonce-400 w-full py-1.5 ps-3 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-500 focus:border-gray-500 placeholder:text-gray-400' placeholder='ex: Bon de commande de powerTech (#BC-215)' />
+                        </div>
+                        <div className='w-full flex items-center justify-between'>
+                            <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
+                                <span className="text-gray-50 text-lg font-semibold">De</span>
+                                <input value={destinataire} onChange={e => setDestinataire(e.target.value)} type="email" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='ex: Kiotaka Ayanokoji (Moi)' />
+                            </div>
+                            <div className='w-[45%] flex items-start justify-center flex-col gap-4'>
+                                <span className="text-gray-50 text-lg font-semibold">À</span>
+                                <input value={destinateur} onChange={e => setDestinateur(e.target.value)} type="email" className='border-[1.5px] border-fonce-400 w-full py-1.5 px-2 rounded-lg text-gray-50 text-lg font-semibold outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400' placeholder='ex: narutouzumaki@konoha.jp' />
+                            </div>                            
+                        </div>
+                        <div className='w-full flex items-start justify-center flex-col gap-4'>
+                            <span className="text-gray-50 text-lg font-semibold">Contenu</span>
+                            <textarea value={contenu} onChange={e => setContenu(e.target.value)} className='border-[1.5px] border-fonce-400 w-full h-56 py-1.5 px-2 rounded-lg text-gray-50 text-lg outline-none focus:ring-gray-300 focus:border-gray-300 placeholder:text-gray-400 resize-none' placeholder="Une note..." ></textarea>
+                        </div>
+                    </div>  
+                }         
             </div>
             <div className="absolute bottom-0 left-0 bg-fonce-400 p-4 w-full flex items-center justify-end gap-4">
                 <button onClick={() => setEtape(etape - 1)} className={`border border-bleu bg-transparent px-4 py-2 cursor-pointer rounded-xl text-bleu text-lg  tracking-wide font-semibold transition-all duration-200 ease-in-out hover:bg-bleu hover:text-fonce-600 hover:border-transparent ${etape === 1 ? "hidden" : ""}`}>
@@ -358,10 +396,10 @@ const NouvelleVente = () => {
                 <button onClick={() => setEtape(etape - 1)} className={`border border-bleu bg-transparent px-4 py-2 cursor-pointer rounded-xl text-bleu text-lg  tracking-wide font-semibold transition-all duration-200 ease-in-out hover:bg-bleu hover:text-fonce-600 hover:border-transparent ${etape === 1 ? "hidden" : ""}`}>
                     Précédent
                 </button>
-                <button onClick={() => setEtape(etape + 1)} className={`border border-transparent bg-bleu px-[31px] py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-bleu hover:border-bleu ${etape === 3 ? "hidden" : ""}`}>
+                <button onClick={() => setEtape(etape + 1)} className={`border border-transparent bg-bleu px-[31px] py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-bleu hover:border-bleu ${etape === 4 ? "hidden" : ""}`}>
                     Suivant
                 </button> 
-                <button  className={`border border-transparent bg-bleu px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-bleu hover:border-bleu ${etape === 3 ? "block" : "hidden"}`}>
+                <button  className={`border border-transparent bg-bleu px-4 py-2 cursor-pointer rounded-xl text-noir text-lg font-semibold transition duration-200 ease-in-out hover:bg-transparent hover:text-bleu hover:border-bleu ${etape === 4 ? "block" : "hidden"}`}>
                     Enregistrer
                 </button> 
             </div>
@@ -369,4 +407,4 @@ const NouvelleVente = () => {
     )
 }
 
-export default NouvelleVente
+export default NouveauBon;

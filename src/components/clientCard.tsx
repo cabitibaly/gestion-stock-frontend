@@ -38,7 +38,7 @@ const ClientCard = ({setIsopen, isOpen, clientProps}: ClientCardProps) => {
     }, [isVisible])
 
     return (
-        <div className="relative p-4 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-3">
+        <div onClick={() =>setIsopen(!isOpen)} className="relative p-4 rounded-xl bg-fonce-400 w-full flex items-center justify-start gap-3">
             <Image src={clientProps.image} height={10} width={60} alt={clientProps.nom} className="rounded-full" />
             <div className="w-auto flex items-start justify-center gap-1">
                 <div className='pr-8 border-r border-gray-500 w-[250px]'>
@@ -64,7 +64,7 @@ const ClientCard = ({setIsopen, isOpen, clientProps}: ClientCardProps) => {
                     <p className="text-ld text-gray-50 font-semibold line-clamp-1">{clientProps.creance} FCFA</p>
                 </div>                                               
             </div>
-            <button ref={buttonRef} onClick={() => setIsvisible(!isVisible)} className="cursor-pointer border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
+            <button ref={buttonRef} onClick={(e) => {setIsvisible(!isVisible); e.stopPropagation()}} className="cursor-pointer border border-gray-500 p-1 absolute right-2 rounded-lg flex items-center justify-center">
                 <Ellipsis size={28} strokeWidth={2} className="stroke-gray-500" />
             </button>
             {   
