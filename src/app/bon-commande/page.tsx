@@ -135,7 +135,7 @@ const BonCommande = () => {
                         <div className='relative bg-fonce-200 py-2 px-3 cursor-pointer rounded-xl w-full flex items-center justify-between group'>
                             <span className='text-gray-50 text-lg font-semibold'>{fournisseur ? fournisseur : 'Aucune sélection'}</span>
                             <ChevronDown size={28} strokeWidth={2.5} className='stroke-gray-500 transition duration-200 ease-linear group-hover:stroke-gray-50 group-hover:rotate-180' />
-                            <div className="border border-gray-500 bg-fonce-400 w-full absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col z-20 group-hover:flex">                              
+                            <div className="border border-gray-500 bg-fonce-400 w-full h-52 absolute left-0 top-full rounded-xl hidden items-start justify-start flex-col overflow-auto z-20 group-hover:flex">                              
                                 {
                                     fournisseurData.map((fournisseurItem, index) => (
                                         <button key={index} onClick={() => setFournisseur(fournisseurItem)} className='bg-fonce-transparent border-b border-gray-500 cursor-pointer px-3 py-1.5 rounded-t-xl w-full text-gray-50 text-lg font-semibold flex items-center justify-between transition duration-200 ease-out hover:bg-fonce-200'>

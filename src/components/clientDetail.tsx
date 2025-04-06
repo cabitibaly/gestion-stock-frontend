@@ -151,13 +151,13 @@ const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
                     }
                     {
                         isTransaction &&
-                        <div className="w-full flex items-start justify-start flex-col gap-4">                                                        
+                        <div className="w-full flex items-start justify-start flex-col gap-4">
                             <VenteCard
                                 venteProps={
                                     {
                                         id: 193,
-                                        nomClinet: "Vinsmoke",
-                                        prenomClinet: "Sanji",
+                                        nomClient: "Vinsmoke",
+                                        prenomClient: "Sanji",
                                         adresseClinet: "North Blue, One Piece",
                                         montantCommande: 200000,
                                         statutCommande: "EMBALLEE",
@@ -172,8 +172,8 @@ const ClientDetail = ({id, setIsOpen, isOpen}: Props) => {
                                 venteProps={
                                     {
                                         id: 193,
-                                        nomClinet: "Vinsmoke",
-                                        prenomClinet: "Sanji",
+                                        nomClient: "Vinsmoke",
+                                        prenomClient: "Sanji",
                                         adresseClinet: "North Blue, One Piece",
                                         montantCommande: 200000,
                                         statutCommande: "EMBALLEE",

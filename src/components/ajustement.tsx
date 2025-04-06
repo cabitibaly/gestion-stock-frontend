@@ -6,6 +6,7 @@ import { Calendar } from "primereact/calendar";
 import { addLocale } from "primereact/api";
 import fr from "../constants/fr.json";
 import { Dropdown } from 'primereact/dropdown';
+import { produits } from '@/data/produit';
 
 addLocale("fr", fr.fr)
 
@@ -40,12 +41,7 @@ const Ajustement = ({setAjustementOpen, ajustementOpen}: AjustementProps) => {
             </div>
             <div className="w-full flex items-center justify-start flex-col gap-4">
                 <ProduitSimpleCard
-                    id={1}
-                    image="/mac.jpg"
-                    nomProduit="Macbook pro 16&quot; puce M3 Max 1TB/36GB"
-                    categorie="Ordinateur"
-                    quantite={37}
-                    stockFaible={false}            
+                    produitProps={produits[0]}                               
                 />
                 <div className="w-full flex items-start justify-start flex-col gap-4">
                     <span className="text-gray-50 text-lg font-semibold">Type d&apos;ajustement</span>

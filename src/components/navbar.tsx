@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image"
-import { Bell, ChevronDown, LayoutDashboard, Package, PackageOpen, ReceiptText, Settings, ShoppingCart, User2 } from "lucide-react"
+import { Bell, ChevronDown, LayoutDashboard, Package, PackageOpen, ReceiptText, Settings, ShoppingCart, User2, Users, UsersRound } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 
@@ -32,17 +32,23 @@ const Navbar = () => {
                     </Link>
                     <div className={`absolute top-10 rounded-full group hidden transition-all duration-200 ease-linear group-hover:flex group-hover:opacity-100 hover:bg-fonce-200 hover:border-transparent ${pathname === "/client" ? "bg-fonce-200" : "border border-gray-600" }`}>
                         <Link href={"/client"} className="py-2 px-4 flex items-center justify-center gap-2">
-                            <User2 size={20} strokeWidth={2} className={`transition delay-200 ease-in-out group-hover:stroke-vert ${pathname === "/client" ? "stroke-vert" : "stroke-gray-600"}`} />
+                            <Users size={20} strokeWidth={2} className={`transition delay-200 ease-in-out group-hover:stroke-vert ${pathname === "/client" ? "stroke-vert" : "stroke-gray-600"}`} />
                             <span className={`text-sm font-semibold transition delay-200 ease-in-out group-hover:text-white ${pathname === "/client" ? "text-white" : "text-gray-600"}`}>Client</span>                            
                         </Link>
                     </div>                    
                 </li>
-                <li className={`rounded-full group transition-all duration-200 ease-in-out hover:bg-fonce-200 hover:border-transparent ${pathname === "/bon-commande" ? "bg-fonce-200" : "border border-gray-600" }`}>
+                <li className={`relative rounded-full group transition-all duration-200 ease-in-out hover:bg-fonce-200 hover:border-transparent ${pathname === "/bon-commande" ? "bg-fonce-200" : "border border-gray-600" }`}>
                     <Link href={"/bon-commande"} className="py-2 px-4 flex items-center justify-center gap-2">
                         <PackageOpen size={20} strokeWidth={2} className={`transition delay-200 ease-in-out group-hover:stroke-vert ${pathname === "/bon-commande" ? "stroke-vert" : "stroke-gray-600"}`} />
                         <span className={`text-sm font-semibold transition delay-200 ease-in-out group-hover:text-white ${pathname === "/bon-commande" ? "text-white" : "text-gray-600"}`}>Bon de commande</span>
                         <ChevronDown size={20} strokeWidth={2} className={`transition delay-200 duration-100 ease-in-out group-hover:stroke-white group-hover:rotate-180 ${pathname === "/bon-commande" ? "stroke-white" : "stroke-gray-600"} mr-1`} />                
                     </Link>
+                    <div className={`absolute top-10 rounded-full group hidden transition-all duration-200 ease-linear group-hover:flex group-hover:opacity-100 hover:bg-fonce-200 hover:border-transparent ${pathname === "/fournisseur" ? "bg-fonce-200" : "border border-gray-600" }`}>
+                        <Link href={"/fournisseur"} className="py-2 px-4 flex items-center justify-center gap-2">
+                            <UsersRound size={20} strokeWidth={2} className={`transition delay-200 ease-in-out group-hover:stroke-vert ${pathname === "/fournisseur" ? "stroke-vert" : "stroke-gray-600"}`} />
+                            <span className={`text-sm font-semibold transition delay-200 ease-in-out group-hover:text-white ${pathname === "/fournisseur" ? "text-white" : "text-gray-600"}`}>Fournisseur</span>                            
+                        </Link>
+                    </div>
                 </li>
                 <li className={`rounded-full group transition-all duration-200 ease-in-out hover:bg-fonce-200 hover:border-transparent ${pathname === "/factures" ? "bg-fonce-200" : "border border-gray-600" }`}>
                     <Link href={"/factures"} className="py-2 px-4 flex items-center justify-center gap-2">
