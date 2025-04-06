@@ -18,6 +18,10 @@
     @apply rounded-lg border-[1.75px] border-fonce-400 hover:border-gray-500;
 }
 
+#fact .p-inputtext {
+    @apply bg-fonce-600 border-none; 
+}
+
 #datepicker input {
     @apply text-lg font-semibold text-gray-300 border-[1.75px] py-1.5 bg-fonce-600 ring-0 focus:ring-gray-300 focus:border-gray-300;
 }
