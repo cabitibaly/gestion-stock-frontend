@@ -126,7 +126,7 @@ const Factures = () => {
                 </div>
                 <div className='rounded-xl w-3/4 h-full flex items-center justify-start flex-col gap-4 overflow-auto'>
                     <table className="w-full text-sm text-left text-gray-500">
-                        <thead className="rounded-xltext-xs text-gray-700 uppercase bg-fonce-600">
+                        <thead className="rounded-xl text-xs text-gray-700 uppercase bg-fonce-600">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
                                     Numéro de facture

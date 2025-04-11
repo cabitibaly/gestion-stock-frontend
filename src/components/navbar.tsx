@@ -58,8 +58,8 @@ const Navbar = () => {
                 </li>
             </ul>
             <div className="flex items-center justify-between gap-4">
-                <Link href={"/parametres"} className="bg-fonce-400 p-2 rounded-full flex items-center justify-center">
-                    <Settings size={20} strokeWidth={2} className="stroke-gray-200" />
+                <Link href={"/parametres"} className={`bg-fonce-400 p-2 rounded-full flex items-center justify-center group`}>
+                    <Settings size={20} strokeWidth={2} className={`transition duartion-200 ease-in-out group-hover:stroke-vert ${pathname === "/parametres" ? "stroke-vert" : "stroke-gray-200"}`} />
                 </Link>
                 <button className="cursor-pointer relative bg-fonce-400 p-2 rounded-full flex items-center justify-center after:absolute after:top-2 after:right-3 after:h-1.5 after:w-1.5 after:rounded-full after:bg-green-300">
                     <Bell size={20} strokeWidth={2} className="stroke-gray-200" />

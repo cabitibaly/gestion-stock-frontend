@@ -22,6 +22,10 @@
     @apply bg-fonce-600 border-none; 
 }
 
+#nouveau-facture .p-inputtext {
+    @apply bg-transparent border border-fonce-400 h-[41.6px] font-medium outline-none ring-0 text-white; 
+}
+
 #datepicker input {
     @apply text-lg font-semibold text-gray-300 border-[1.75px] py-1.5 bg-fonce-600 ring-0 focus:ring-gray-300 focus:border-gray-300;
 }
